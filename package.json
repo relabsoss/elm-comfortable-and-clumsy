@@ -1,0 +1,13 @@
+{
+  "name": "elm-comfortable-and-clumsy",
+  "version": "1.0.0",
+  "description": "Code examples for article 'Elm. Comfortable and clumsy'",
+  "dependencies": {
+    "elm": "0.18.0-exp5"
+  },
+  "scripts": {
+    "elm-reactor": "npx elm-reactor"
+  },
+  "author": "Slava Turchaninov",
+  "license": "ISC"
+}
