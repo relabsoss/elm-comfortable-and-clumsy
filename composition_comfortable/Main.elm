@@ -71,7 +71,7 @@ update msg model =
           let
             (questionModel, questionCommands, _) = Component.Question.init userData
           in
-            ( { model | ui = Just <| QuestionUi questionModel }, Cmd.batch [Cmd.map AuthMsg commands, Cmd.map QuestionMsg questionCommands] )
+            ( { model | ui = Just <| QuestionUi questionModel, user = User userData }, Cmd.batch [Cmd.map AuthMsg commands, Cmd.map QuestionMsg questionCommands] )
 
         (authModel, commands, _) ->
           ( { model | ui = Just <| AuthUi authModel }, Cmd.map AuthMsg commands )
@@ -83,7 +83,7 @@ update msg model =
           let
             (questionModel, questionCommands, _) = Component.Question.init userData
           in
-            ( { model | ui = Just <| QuestionUi questionModel }, Cmd.batch [Cmd.map AuthMsg commands, Cmd.map QuestionMsg questionCommands] )
+            ( { model | ui = Just <| QuestionUi questionModel, user = User userData }, Cmd.batch [Cmd.map AuthMsg commands, Cmd.map QuestionMsg questionCommands] )
 
         (newAuthModel, commands, _) ->
           ( { model | ui = Just <| AuthUi newAuthModel }, Cmd.map AuthMsg commands )
