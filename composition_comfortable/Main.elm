@@ -8,11 +8,6 @@ import Component.Auth
 import Component.Question
 
 
-init : ( Model, Cmd Msg )
-init =
-  ( initModel, Cmd.none )
-
-
 type Msg
   = OpenPopup
 
@@ -38,13 +33,6 @@ type Ui
   | QuestionUi Component.Question.Model
 
 
-initModel : Model
-initModel =
-  { user = Anonymous
-  , ui = Nothing
-  }
-
-
 main : Program Never Model Msg
 main =
   Html.program
@@ -53,6 +41,18 @@ main =
     , subscriptions = subscriptions
     , view = view
     }
+
+
+init : ( Model, Cmd Msg )
+init =
+  ( initModel, Cmd.none )
+
+
+initModel : Model
+initModel =
+  { user = Anonymous
+  , ui = Nothing
+  }
 
 
 subscriptions : Model -> Sub Msg
