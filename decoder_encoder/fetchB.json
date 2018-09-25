@@ -1,0 +1,37 @@
+{
+  "id": 1,
+  "name": "Product name",
+  "price": 1000,
+  "attributes": [
+    {
+      "id": 1,
+      "name": "Length",
+      "unit": "meters",
+      "type": "int",
+      "value_int": 100,
+      "value_string": null,
+      "value_enum_id": null,
+      "value_enum_label": null
+    },
+    {
+      "id": 1,
+      "name": "Description",
+      "unit": "",
+      "type": "string",
+      "value_int": null,
+      "value_string": "Some note",
+      "value_enum_id": null,
+      "value_enum_label": null
+    },
+    {
+      "id": 1,
+      "name": "Color",
+      "unit": "",
+      "type": "enum",
+      "value_int": null,
+      "value_string": null,
+      "value_enum_id": 1,
+      "value_enum_label": "red"
+    }
+  ]
+}

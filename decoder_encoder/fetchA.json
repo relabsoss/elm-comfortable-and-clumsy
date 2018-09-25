@@ -1,0 +1,28 @@
+{
+  "id": 1,
+  "name": "Product name",
+  "price": 1000,
+  "attributes": [
+    {
+      "id": 1,
+      "name": "Length",
+      "unit": "meters",
+      "value": 100
+    },
+    {
+      "id": 1,
+      "name": "Description",
+      "unit": "",
+      "value": "Some note"
+    },
+    {
+      "id": 1,
+      "name": "Color",
+      "unit": "",
+      "value": {
+        "id": 1,
+        "label": "red"
+      }
+    }
+  ]
+}
