@@ -5,6 +5,7 @@ import Html.Attributes as Attrs
 import Html.Events as Events
 import Http
 import Task
+import Date
 import Json.Decode exposing (..)
 
 
@@ -16,6 +17,8 @@ type alias Model =
 type Msg
   = FetchA
   | FetchB
+  | DateString
+  | DateTimestamp
   | Fetched (Result Http.Error Product)
 
 
@@ -56,6 +59,19 @@ update msg model =
     Fetched (Ok product) ->
       ( { model | product = Just (Debug.log "product" product) }, Cmd.none )
 
+    DateString ->
+      let
+        _ = Debug.log "Decode string date" ( Json.Decode.decodeString decodeDateFromString "\"2005-08-09T18:31:42\"" )
+      in
+        ( model, Cmd.none )
+
+    DateTimestamp ->
+      let
+        _ = Debug.log "Decode integer timestamp" ( Json.Decode.decodeString decodeDateFromTimestamp "1537940952" )
+        _ = Debug.log "Decode float integer timestamp" ( Json.Decode.decodeString decodeDateFromTimestamp "1537940952.00" )
+      in
+        ( model, Cmd.none )
+
     Fetched (Err reason) ->
       let
         _ = Debug.log "reason" reason
@@ -68,6 +84,8 @@ view model =
   div []
     [ button [ Events.onClick FetchA ] [ text "FetchA" ]
     , button [ Events.onClick FetchB ] [ text "FetchB" ]
+    , button [ Events.onClick DateString ] [ text "Decode string date" ]
+    , button [ Events.onClick DateTimestamp ] [ text "Decode timestamp" ]
     ]
 
 
@@ -193,3 +211,21 @@ decodeAttributeValueType valueType =
 
     _ ->
       Json.Decode.fail "Unknown attribute type"
+
+
+decodeDateFromString : Decoder Date.Date
+decodeDateFromString =
+  string
+    |> andThen (\stringDate ->
+      case Date.fromString stringDate of
+        Ok date -> Json.Decode.succeed date
+        Err reason -> Json.Decode.fail reason
+    )
+
+decodeDateFromTimestamp : Decoder Date.Date
+decodeDateFromTimestamp =
+  oneOf
+    [ int
+        |> Json.Decode.map toFloat
+    , float  ]
+    |> Json.Decode.map Date.fromTime
